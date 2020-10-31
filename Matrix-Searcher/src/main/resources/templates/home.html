@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--––
+ * Home Page
+ * @author: Mark Zarak, Oct 2020
+––-->
+<head>
+	<title>Matrix Searcher</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	
+	<header>
+		<img class="title" th:src="@{/images/title.png}" height="150px" alt="Matrix Searcher" />
+	</header>
+	
+	<main>
+		<p class="description">Matrix Searcher description.</p>	
+		 
+		<form action="#" th:action="@{/play}" th:object="${user}">
+			<section class="user-input">	
+				<p>Name: <input type="text" th:field="*{name}" required /></p> 
+				<p>Length: <input class="input-field" type="number" min="5" th:field="*{length}" /></p> 
+
+			</section>
+				<p><input class="button" type="submit" value="Submit" /></p>
+		</form>	
+		
+	</main>	
+</body>
+
+</html>
