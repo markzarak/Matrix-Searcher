@@ -12,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ca.sheridancollege.beans.User;
@@ -33,7 +31,7 @@ public class HomeController {
 	
 	// Create and display 2D matrix 
 	@GetMapping("/play")
-	public String doStartGame(Model model, @ModelAttribute("user") User user, @RequestParam int length) {
+	public String doStartGame(Model model, @ModelAttribute User user, @RequestParam int length) {
 		
 		// Create empty 2D array based on user input
 		char[][] squareMatrix = new char[length][length];
@@ -58,24 +56,10 @@ public class HomeController {
 		
 	// Display user score and high score
 	@GetMapping("/score")
-	public String doShowScore(Model model, @ModelAttribute("user") User user) {
+	public String doShowScore(Model model, @ModelAttribute User user) {
 		
 		System.out.println("User from /score: " + user.toString());
 		return "score.html";
-	}	
+	}
 	
-//	// Page for new game
-//	@RequestMapping("/new-game")
-//	public String d(Model model) {
-//		
-//		model.addAttribute("user", new User());
-//		return "home.html";
-//	}
-//	
-//	// Page to continue game
-//	@RequestMapping("/continue-game")
-//	public String e(Model model) {
-//		
-//		return "registered-user-home.html";
-//	}
 }
