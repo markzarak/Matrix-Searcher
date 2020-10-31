@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--––
+ * Score Page
+ * @author: Mark Zarak, Oct 2020
+––-->
+<head>
+	<title>Matrix Searcher</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	
+	<header>
+		<img class="title" th:src="@{/images/title.png}" height="150px" alt="Matrix Searcher" />
+	</header>
+	
+	<main>
+		<p class="description">Matrix Searcher score.</p>	
+		
+		<p>Name:  <span th:text="${user.name}"></span></p>
+		<p>Score:  <span th:text="${user.score}"></span></p>
+		
+		<!--–– 
+		<a th:href="@{new-game}">New Game</a>
+		<a th:href="@{continue-game}">Continue Game</a>	
+		––-->
+		
+	</main>	
+</body>
+
+</html>
