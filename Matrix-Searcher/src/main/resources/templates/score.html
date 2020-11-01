@@ -16,12 +16,24 @@
 	</header>
 	
 	<main>
+		<table>
+            <tr th:each="row: ${squareMatrix}">
+                <td th:each="value: ${row}">
+                    <div th:switch="${value}">
+                        <input th:case="0" style="width:30px;height:30px;text-align:center" type = "text" maxlength="1" value="0">
+                        <input th:case="*" style="width:30px;height:30px;text-align:center;background-color:white" type = "text" th:value="${value}" readonly>
+                    </div>
+                </td>
+            </tr>
+        </table>
+	
 		<p class="description">Matrix Searcher score.</p>	
 		
+		<!--–– 
 		<p>Name:  <span th:text="${user.name}"></span></p>
 		<p>Score:  <span th:text="${user.score}"></span></p>
 		
-		<!--–– 
+
 		<a th:href="@{new-game}">New Game</a>
 		<a th:href="@{continue-game}">Continue Game</a>	
 		––-->

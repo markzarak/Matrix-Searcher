@@ -7,6 +7,8 @@
 package ca.sheridancollege.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,10 +18,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class User implements Serializable {
-	
+
 	private static final long serialVersionUID = 7773031754142054607L;
 	private String name;
+	private int length = 5; // Value set as default minimum
 	private int score;
-	private int length = 5; //Value set to default minimum
-	
+	private String wordList;
+
 }

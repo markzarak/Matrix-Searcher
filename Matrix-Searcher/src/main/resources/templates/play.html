@@ -28,19 +28,15 @@
             </tr>
         </table>
 
-		<p class="description">Matrix Searcher description.</p>
-
-		<form action="#" th:action="@{/score}" >
-			<section class="user-input">
-				<p>
-					Search For: <input type="text" required />
-				</p>
+		<p class="description">Enter words to search separated by comma.</p>
+		
+		<form action="#" th:action="@{/score}" th:object="${user}">
+			<section class="user-input">	
+				<p>Search For: <input type="text" th:field="*{wordList}" required /></p> 
 
 			</section>
-			<p>
-				<input class="button" type="submit" value="Submit" />
-			</p>
-		</form>
+				<p><input class="button" type="submit" value="Submit" /></p>
+		</form>	
 
 	</main>
 </body>
