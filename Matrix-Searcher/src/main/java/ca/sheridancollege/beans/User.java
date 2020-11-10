@@ -7,8 +7,6 @@
 package ca.sheridancollege.beans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,9 +18,12 @@ import lombok.NoArgsConstructor;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 7773031754142054607L;
+	private int id;
 	private String name;
-	private int length = 5; // Value set as default minimum
+	private int length = 5; // Minimum size of the 2D matrix
 	private int score;
+	private char[][] squareMatrix;
+	private String squareMatrixString;
 	private String wordList;
 
 }
