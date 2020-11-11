@@ -14,15 +14,13 @@ public class SquareMatrixSearch {
 	// Search squareMatrix for matching strings
 	public int searchForMatch(String word) {
 
-		char[][] squareMatrix = SquareMatrixCreator.getSquareMatrixFromString(ds.getLength(),
-				ds.getSquareMatrixString());
+		char[][] squareMatrix = SquareMatrixCreator.getSquareMatrixFromString(ds.getPlayer().getLength(), ds.getPlayer().getSquareMatrixString());
 
 		int wordsFound = 0;
 		// Loop through all characters in array squareMatrix
 		for (int floor = 0; floor < squareMatrix.length; ++floor) {
 			for (int room = 0; room < squareMatrix[0].length; ++room) {
-				// Search for first character of the word, if matched check for remaining
-				// characters
+				// Search for first character of the word, if matched check for remaining characters
 				System.out.println("looking for:" + word + " floor:[" + (floor) + "], room:[" + room + "] has "
 						+ squareMatrix[floor][room]);
 				if (squareMatrix[floor][room] == word.charAt(0) && wordMatch(squareMatrix, floor, room, 1, word)) {
