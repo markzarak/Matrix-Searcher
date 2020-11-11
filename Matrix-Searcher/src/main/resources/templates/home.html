@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!--––
  * Home Page
- * @author: Mark Zarak, Oct 2020
+ * @author: Mark Zarak, Nov 2020
 ––-->
 <head>
 	<title>Matrix Searcher</title>
@@ -12,15 +12,18 @@
 <body>
 	
 	<header>
-		<img class="title" th:src="@{/images/title.png}" height="150px" alt="Matrix Searcher" />
+		<img class="logo" th:src="@{/images/title.png}" alt="Word Search" />
 	</header>
 	
 	<main>
-		<p class="description">Matrix Searcher description.</p>	
+		<p class="description">Welcome to the Word Search game! This application accepts multiple 
+		strings to search for in all directions: horizontally, vertically, and diagonally. To begin 
+		playing, please enter your name and the length of the square grid to create. The larger it
+		is, the greater your score can be, however the minimum must be at least 5.</p>	
 		 
 		<form action="#" th:action="@{/play}" th:object="${user}">
 			<section class="user-input">	
-				<p>Name: <input type="text" th:field="*{name}" required /></p> 
+				<p>Name: <input type="text" th:field="*{name}" required autofocus /></p> 
 				<p>Length: <input class="input-field" type="number" min="5" th:field="*{length}" /></p> 
 
 			</section>

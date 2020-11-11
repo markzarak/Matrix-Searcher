@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!--––
  * Play Game Page
- * @author: Mark Zarak, Oct 2020
+ * @author: Mark Zarak, Nov 2020
 ––-->
 <head>
 	<title>Matrix Searcher</title>
@@ -12,12 +12,11 @@
 <body>
 
 	<header>
-		<img class="title" th:src="@{/images/title.png}" height="150px"
-			alt="Matrix Searcher" />
+		<img class="logo" th:src="@{/images/title.png}" alt="Word Search" />
 	</header>
 
 	<main>
-		<table>
+		<table class="user-output">
             <tr th:each="row: ${squareMatrix}">
                 <td th:each="value: ${row}">
                     <div th:switch="${value}">
@@ -28,11 +27,11 @@
             </tr>
         </table>
 
-		<p class="description">Enter words to search separated by comma.</p>
+		<p class="description">Please enter words to search for in the box below, separated by a comma.</p>
 		
 		<form action="#" th:action="@{/score}" th:object="${user}">
 			<section class="user-input">	
-				<p>Search For: <input type="text" th:field="*{wordList}" required /></p> 
+				<p>Search For: <input type="text" th:field="*{wordList}" required autofocus /></p> 
 
 			</section>
 				<p><input class="button" type="submit" value="Submit" /></p>

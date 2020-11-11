@@ -1,39 +1,64 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!--––
  * Score Page
- * @author: Mark Zarak, Oct 2020
+ * @author: Mark Zarak, Nov 2020
 ––-->
 <head>
-	<title>Matrix Searcher</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" />
+<title>Matrix Searcher</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/css/style.css}" />
 </head>
 
 <body>
-	
+
 	<header>
-		<img class="title" th:src="@{/images/title.png}" height="150px" alt="Matrix Searcher" />
+		<img class="logo" th:src="@{/images/title.png}" alt="Word Search" />
 	</header>
-	
+
 	<main>
 	
-		<p class="description">Matrix Searcher score.</p>	
+		<table class="user-output">
+            <tr th:each="row: ${user.squareMatrix}">
+                <td th:each="value: ${row}">
+                    <div th:switch="${value}">
+                        <input th:case="0" style="width:30px;height:30px;text-align:center" type = "text" maxlength="1" value="0">
+                        <input th:case="*" style="width:30px;height:30px;text-align:center;background-color:white" type = "text" th:value="${value}" readonly>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+		<p class="results"><span th:text="${user.totalWordsFound > 0} ? 'Congratulations!' : 'Better Luck Next Time...'" ></span></p> 
+		<p class="results">You Searched For: <span th:text="${user.wordList}" ></span></p> 
+		<p class="results">Total Times Found: <span th:text="${user.totalWordsFound}" ></span></p> 
+		<p class="results">Total Score: <span th:text="${user.score}" ></span></p> 
 		
-		<table border="1">
-		 <tr>
-		   <th>Name</th>
-		   <th>Matrix Size</th>
-		   <th>Score</th>
-		 </tr>
-		 
-		  <tr th:each="player : ${players}">
-		  		<td th:text="${player.name}"></td>
-		        <td th:text="|${player.length} x ${player.length}|"></td>
-		        <td th:text="${player.score}"></td>
-		  </tr>
-		</table>
+		<hr id="hrTop"/>
+		<p class="title">Top 5 Leaderboard</p>
+		<hr id="hrBottom"/>
+
+		<section class="user-output">
+			<table class="leaderboard">
+				<tr>
+					<th>Name</th>
+					<th>Grid Size</th>
+					<th>Score</th>
+				</tr>
+
+				<tr th:each="player : ${players}">
+					<td class="score" th:text="${player.name}"></td>
+					<td class="score" th:text="|${player.length} x ${player.length}|"></td>
+					<td class="score" th:text="${player.score}"></td>
+				</tr>
+			</table>
+		</section>
 		
-	</main>	
+		<div class="box">
+			<a id="buttons" class="button" href="" th:href="@{/newgame}"> New Game</a>
+			<a id="buttons" class="button" href="" th:href="@{/continuegame}"> Continue</a>
+		</div>
+	</main>
 </body>
 
 </html>
