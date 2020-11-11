@@ -1,7 +1,7 @@
 /*
- * Database Access
+ * A class that models a Database to perform CRUD operations.
  * 
- * @author: Mark Zarak, Oct 2020
+ * @author: Mark Zarak, Nov 2020
  */
 
 package ca.sheridancollege.database;
@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.EmptySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -26,10 +25,10 @@ public class DatabaseAccess {
 	@Autowired
 	NamedParameterJdbcTemplate jdbc;
 
-	// Add player info to database
+	// Add new player info
 	public void addPlayer(User user) {
 
-		// Convert squareMatrix 2D array to squareMatrixString for database storage
+		// Convert 2D array to String for database storage
 		String squareMatrixString = SquareMatrixCreator.doSquareMatrixString(user);
 
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
@@ -40,22 +39,44 @@ public class DatabaseAccess {
 
 		jdbc.update(query, parameters);
 	}
+	
+	// Update current player info
+	public void updatePlayer(User user) {
 
-	// Update score
-	public void setScore(int totalWordsFound) {
+		// Convert 2D array to String for database storage
+		String squareMatrixString = SquareMatrixCreator.doSquareMatrixString(user);
 
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
-		String query = "Update player_scores Set score=:score WHERE id=SELECT MAX(id)";
-		parameters.addValue("score", totalWordsFound);
+		String query = "Update player_scores Set length=:length, squareMatrixString=:squareMatrixString WHERE id=SELECT MAX(id)";
+		parameters.addValue("length", user.getLength());
+		parameters.addValue("squareMatrixString", squareMatrixString);
 
 		jdbc.update(query, parameters);
 	}
 
-	// Returns all data from database as an ArrayList of User objects
-	public ArrayList<User> getPlayers() {
+	// Update current player score
+	public void setScore(int totalWordsFound, int length) {
+		
+		// Calculate score based on words found and grid size 
+		length -= 4; // A 5x5 grid produces a score multiplier of 1, a 6x6 grid = 2, etc...
+		int score = totalWordsFound * length;
+		
+		// Add to previous score
+		int oldScore = getPlayer().getScore();
+		score += oldScore;
+
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "Update player_scores Set score=:score WHERE id=SELECT MAX(id)";
+		parameters.addValue("score", score);
+
+		jdbc.update(query, parameters);
+	}
+
+	// Returns an ArrayList of the top 5 players
+	public ArrayList<User> getTopPlayers() {
 
 		ArrayList<User> players = new ArrayList<User>();
-		String query = "SELECT * FROM player_scores";
+		String query = "SELECT * FROM player_scores ORDER BY score DESC LIMIT 5";
 		List<Map<String, Object>> rows = jdbc.queryForList(query, new HashMap<String, Object>());
 
 		// Loop through database and add data to User object
@@ -71,22 +92,37 @@ public class DatabaseAccess {
 
 		return players;
 	}
+	
+	// Returns the current player
+	public User getPlayer() {
 
-	// Return squareMatrixString
-	public String getSquareMatrixString() {
+		ArrayList<User> players = new ArrayList<User>();
+		String query = "SELECT * FROM player_scores";
+		List<Map<String, Object>> rows = jdbc.queryForList(query, new HashMap<String, Object>());
 
-		String query = "SELECT squareMatrixString FROM player_scores WHERE id=SELECT MAX(id)";
+		// Loop through database and add data to User object
+		for (Map<String, Object> row : rows) {
+			User user = new User();
+			user.setName((String) (row.get("name")));
+			user.setLength((Integer) (row.get("length")));
+			user.setScore((Integer) (row.get("score")));
+			user.setSquareMatrixString((String) (row.get("squareMatrixString")));
+			user.setContinuingGame((boolean) (row.get("continuingGame")));
 
-		return jdbc.queryForObject(query, EmptySqlParameterSource.INSTANCE, String.class);
+			players.add(user);
+		}
+		
+		return players.get(players.size()-1);
 	}
+	
+	// Set continuingGame
+	public void setContinuingGame(Boolean decision) {
+	
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "Update player_scores Set continuingGame=:continuingGame WHERE id=SELECT MAX(id)";
+		parameters.addValue("continuingGame", decision);
 
-	// Return length
-	public int getLength() {
-
-		String query = "SELECT length FROM player_scores WHERE id=SELECT MAX(id)";
-		int length = Integer.valueOf(jdbc.queryForObject(query, EmptySqlParameterSource.INSTANCE, String.class));
-
-		return length;
+		jdbc.update(query, parameters);
 	}
 
 }
