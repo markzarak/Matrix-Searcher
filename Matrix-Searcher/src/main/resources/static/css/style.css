@@ -1,21 +1,25 @@
 /* Default Layout */
-.title {
+.logo {
 	display: block;
 	margin: 0 auto;
+	height: 50px;
+	padding: 40px;
 }
 
 body {
-	background: #00416A; /* fallback for old browsers */
-	background: -webkit-linear-gradient(to bottom, #E4E5E6, #00416A); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to bottom, #E4E5E6, #00416A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: #1D2B64; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #F8CDDA, #1D2B64); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #F8CDDA, #1D2B64); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 	width: 50%;
 	margin: 0px auto;
 	font-family: "Helvetica", "Arial", sans-serif;
+	font-size: 16px;
 	color: white;
 }
 
 main {
-	background-color: navy;
+	border-radius: 25px;
+	background-color: #10028257; /* Purple */
 	padding: 20px;
 }
 
@@ -26,8 +30,8 @@ main {
 	border: none;
 	border-radius: 4px;
 	transition-duration: 0.4s;
-	background-color: #008F11; /* Dark Green */
-	color: black;
+	color: white;
+	background-color: #e6dae630; /* Purple */
 	text-align: center;
 	text-decoration: none;
 	font-size: 16px;
@@ -35,13 +39,15 @@ main {
 }
 
 .button:hover {
-	background-color: #00FF41; /* Light Green */
-	color: black;
+	background-color: #d7a3f2; /* Light Purple */
 }
 
 /* Home Page*/
 .description {
 	line-height: 1.7;
+	text-align: center;
+	margin: 20 auto;
+	width: 80%;
 }
 
 .user-input {
@@ -54,7 +60,54 @@ main {
 }
 
 /* Play Page */
-table {
+
+.user-output {
 	display: flex;
 	justify-content: center;
+}
+
+/* Score Page */
+.leaderboard {
+	width: 30%;
+	font-size: 20px;
+	background-color: #49326d; /* Dark Purple */
+}
+
+.score {
+	border: 1px solid #d7a3f2; /* Light Purple */
+	text-align: center;
+}
+
+hr {
+	border: none;
+	border-top: 2px dashed #fff; /* White */
+	width: 70%;
+}
+
+#hrTop {
+	margin-top: 40px;
+}
+
+#hrBottom {
+	margin-bottom: 20px;
+}
+
+.title {
+	font-size: 25px;
+	text-align: center;
+	margin: 0px;
+}
+
+.results {
+	text-align: center;
+}
+
+#buttons {
+	margin: 50px 30px;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
