@@ -1,5 +1,6 @@
 /*
- * A class that creates a 2D array filled with random characters
+ * A class that creates a 2D array filled with random characters and returns
+ * it as a nested array or String. 
  * 
  * @author: Mark Zarak, Nov 2020
  */
@@ -27,16 +28,12 @@ public class SquareMatrixCreator {
 		// Fill array with random letters of the English alphabet
 		for (int i = 0; i < squareMatrix.length; ++i) {
 			for (int j = 0; j < squareMatrix[0].length; ++j) {
-
 				// Randomly add letter by incrementing char value
 				Random random = new Random();
 				char randomLetter = (char) (random.nextInt(26) + 'a');
 				squareMatrix[i][j] = randomLetter;
-				System.out.print(squareMatrix[i][j]);
 			}
-			System.out.println("");
 		}
-		System.out.println("");
 
 		return squareMatrix;
 	}
@@ -50,7 +47,7 @@ public class SquareMatrixCreator {
 				squareMatrixString += user.getSquareMatrix()[i][j];
 			}
 		}
-		System.out.println("squareMatrixString: " + squareMatrixString);
+		
 		return squareMatrixString;
 	}
 
@@ -60,17 +57,13 @@ public class SquareMatrixCreator {
 		char[] characterArray = squareMatrixString.toCharArray();
 
 		char[][] squareMatrix = new char[length][length];
-		
-		System.out.println("characterArray[i]");
-		for (int i = 0; i < characterArray.length; ++i) {
-			System.out.print(characterArray[i]);
-		}		
 
 		// Fill 2D array
 		int count = 0;
 		for (int i = 0; i < squareMatrix.length; ++i) {
-			for (int j = 0; j < squareMatrix[i].length; ++j, count++) {
+			for (int j = 0; j < squareMatrix[i].length; ++j) {
 				squareMatrix[i][j] = characterArray[count];
+				count++;
 			}
 		}
 
