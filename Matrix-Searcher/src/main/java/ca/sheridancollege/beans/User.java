@@ -1,7 +1,7 @@
 /*
- * Model
+ * A class that models the User.
  * 
- * @author: Mark Zarak, Oct 2020
+ * @author: Mark Zarak, Nov 2020
  */
 
 package ca.sheridancollege.beans;
@@ -21,9 +21,11 @@ public class User implements Serializable {
 	private int id;
 	private String name;
 	private int length = 5; // Minimum size of the 2D matrix
+	private int totalWordsFound;
 	private int score;
 	private char[][] squareMatrix;
 	private String squareMatrixString;
 	private String wordList;
+	private boolean continuingGame; 
 
 }
