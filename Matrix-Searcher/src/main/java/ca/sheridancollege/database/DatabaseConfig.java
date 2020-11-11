@@ -1,7 +1,7 @@
 /*
- * Database Configuration
+ * A class for database configuration.
  * 
- * @author: Mark Zarak, Oct 2020
+ * @author: Mark Zarak, Nov 2020
  */
 
 package ca.sheridancollege.database;
@@ -18,13 +18,13 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 @Configuration
 public class DatabaseConfig {
 
-	// Used by the DatabaseAccess class to submit our JDBC Query Strings
+	// Used by the DatabaseAccess class to submit JDBC Query Strings
 	@Bean
 	public NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource dataSource) {
 		return new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	// Define the connections found in application.properties
+	// Defines the connections found in application.properties
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
