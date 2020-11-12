@@ -19,12 +19,12 @@
 		<p class="description">Welcome to the Word Search game! This application accepts multiple 
 		strings to search for in all directions: horizontally, vertically, and diagonally. To begin 
 		playing, please enter your name and the length of the square grid to create. The larger it
-		is, the greater your score can be, however the minimum must be at least 5.</p>	
+		is, the greater your score can be, however the minimum must be at least 5 and the maximum is 20.</p>	
 		 
 		<form action="#" th:action="@{/play}" th:object="${user}">
 			<section class="user-input">	
-				<p>Name: <input type="text" th:field="*{name}" required autofocus /></p> 
-				<p>Length: <input class="input-field" type="number" min="5" th:field="*{length}" /></p> 
+				<p>Name: <input type="text" th:field="*{name}" maxlength="30" required autofocus /></p> 
+				<p>Length: <input class="input-field" type="number" min="5" max="20" th:field="*{length}" /></p> 
 
 			</section>
 				<p><input class="button" type="submit" value="Submit" /></p>

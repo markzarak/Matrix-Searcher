@@ -21,17 +21,14 @@
 		<table class="user-output">
             <tr th:each="row: ${user.squareMatrix}">
                 <td th:each="value: ${row}">
-                    <div th:switch="${value}">
-                        <input th:case="0" style="width:30px;height:30px;text-align:center" type = "text" maxlength="1" value="0">
-                        <input th:case="*" style="width:30px;height:30px;text-align:center;background-color:white" type = "text" th:value="${value}" readonly>
-                    </div>
+					<input class="grid" type ="text" th:value="${value}" readonly>
                 </td>
             </tr>
         </table>
 
 		<p class="results"><span th:text="${user.totalWordsFound > 0} ? 'Congratulations!' : 'Better Luck Next Time...'" ></span></p> 
 		<p class="results">You Searched For: <span th:text="${user.wordList}" ></span></p> 
-		<p class="results">Total Times Found: <span th:text="${user.totalWordsFound}" ></span></p> 
+		<p class="results">Total Words Found: <span th:text="${user.totalWordsFound}" ></span></p> 
 		<p class="results">Total Score: <span th:text="${user.score}" ></span></p> 
 		
 		<hr id="hrTop"/>

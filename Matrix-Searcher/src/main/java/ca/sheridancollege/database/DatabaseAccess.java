@@ -55,11 +55,11 @@ public class DatabaseAccess {
 	}
 
 	// Update current player score
-	public void setScore(int totalWordsFound, int length) {
+	public void setScore(int totalWordsFound, int difficulty) {
 		
-		// Calculate score based on words found and grid size 
-		length -= 4; // A 5x5 grid produces a score multiplier of 1, a 6x6 grid = 2, etc...
-		int score = totalWordsFound * length;
+		// Calculate score based on words found and grid length 
+		difficulty += 5; // A 5x5 grid produces a score multiplier of 10, a 6x6 grid = 11, etc...
+		int score = totalWordsFound * difficulty;
 		
 		// Add to previous score
 		int oldScore = getPlayer().getScore();

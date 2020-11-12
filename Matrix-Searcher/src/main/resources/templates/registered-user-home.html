@@ -18,12 +18,12 @@
 	<main>
 		<p class="description">Welcome back to the Word Search game! To continue playing, please
 		 enter the length of the square grid to create. The larger it is, the greater your score 
-		 can be, however the minimum must be at least 5.</p>	
+		 can be, however the minimum must be at least 5 and the maximum is 20.</p>	
 		 
 		<form action="#" th:action="@{/play}" th:object="${user}">
 			<section class="user-input">	
-				<p>Name: <input type="text" th:field="*{name}" th:value="*{name}" disabled /></p> 
-				<p>Length: <input class="input-field" type="number" min="5" th:field="*{length}" autofocus /></p> 
+				<p>Name: <input type="text" th:field="*{name}" disabled /></p> 
+				<p>Length: <input class="input-field" type="number" min="5" max="20" th:field="*{length}" autofocus /></p> 
 
 			</section>
 				<p><input class="button" type="submit" value="Submit" /></p>

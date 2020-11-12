@@ -44,6 +44,7 @@ public class HomeController {
 	public String goContinueGame(Model model, @ModelAttribute User user) {
 		
 		user.setName(ds.getPlayer().getName());
+		user.setLength(ds.getPlayer().getLength());
 		model.addAttribute("user", user);
 
 		return "registered-user-home.html";
@@ -80,8 +81,10 @@ public class HomeController {
 		// Begin search for each word
 		int totalWordsFound = 0;
 		for (String word : wordToSearch) {
-			System.out.println("*****************************word: " + word + "*****************************");
-			totalWordsFound += squareMatrixSearch.searchForMatch(word);
+			if (word.length()> 0) {
+				totalWordsFound += squareMatrixSearch.searchForMatch(word);
+			}
+			
 		}
 		
 		// Retrieve 2D array from database

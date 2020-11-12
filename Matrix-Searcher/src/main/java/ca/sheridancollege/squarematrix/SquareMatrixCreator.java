@@ -31,7 +31,7 @@ public class SquareMatrixCreator {
 				// Randomly add letter by incrementing char value
 				Random random = new Random();
 				char randomLetter = (char) (random.nextInt(26) + 'a');
-				squareMatrix[i][j] = randomLetter;
+				squareMatrix[i][j] = Character.toUpperCase(randomLetter);
 			}
 		}
 

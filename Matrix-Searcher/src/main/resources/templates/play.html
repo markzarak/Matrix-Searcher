@@ -19,10 +19,7 @@
 		<table class="user-output">
             <tr th:each="row: ${squareMatrix}">
                 <td th:each="value: ${row}">
-                    <div th:switch="${value}">
-                        <input th:case="0" style="width:30px;height:30px;text-align:center" type = "text" maxlength="1" value="0">
-                        <input th:case="*" style="width:30px;height:30px;text-align:center;background-color:white" type = "text" th:value="${value}" readonly>
-                    </div>
+                	<input class="grid" type ="text" th:value="${value}" readonly>
                 </td>
             </tr>
         </table>

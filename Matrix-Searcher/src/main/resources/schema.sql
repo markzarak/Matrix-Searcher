@@ -3,13 +3,13 @@ CREATE TABLE `player_scores` (
 	`name` VARCHAR(30), 
 	`length` INT, 
 	`score` INT DEFAULT 0,
-	`squareMatrixString` VARCHAR(10000),
+	`squareMatrixString` VARCHAR(400),
 	`continuingGame` boolean DEFAULT false
 );
 
 INSERT INTO `player_scores` (name, length, score, squareMatrixString) VALUES 
-('Mark Zarak', 99, 999, 'pmcppabzpwuvhqekmrrgleqnruczidyqkocogewgegpmcwuveqnrfchtovkh'),
-('Spider-Man', 7, 110, 'eczidyqkocogewgegfcmtovkpmcppabzvvvh'),
-('Iron Man', 20, 741, 'rczidyqkocogewgegfcmtovkhpmcppabzpwuvhqekmrrgleqhhpabzp'),
+('Mark Zarak', 20, 999, 'pmcppabzpwuvhqekmrrgleqnruczidyqkocogewgegpmcwuveqnrfchtovkh'),
+('Spider-Man', 7, 80, 'eczidyqkocogewgegfcmtovkpmcppabzvvvh'),
+('Iron Man', 15, 740, 'rczidyqkocogewgegfcmtovkhpmcppabzpwuvhqekmrrgleqhhpabzp'),
 ('Thor was here', 12, 325, 'tkfbkdsidghomjdgzomhezugbtkfbkdsidgvvvvhezugb'),
-('Aquaman!!', 5, 1, 'zhnqflmyzbrgufzibetnhfdsn');
+('Aquaman!!', 5, 10, 'zhnqflmyzbrgufzibetnhfdsn');
